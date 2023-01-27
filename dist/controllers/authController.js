@@ -22,14 +22,19 @@ const validateinput = Joi.object({
 });
 //login user
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const loginuser = yield user_1.default.findOne({ "email": req.body.email });
-    if (!loginuser)
-        return res.status(400).json('your credentials are not valid');
-    const correctPassword = yield loginuser.validatePassword(req.body.password);
-    if (!correctPassword)
-        return res.status(400).json('Invalid Password');
-    const token = jsonwebtoken_1.default.sign({ _id: loginuser._id }, process.env['SECRET_TOKEN'] || 'tokenindefinido');
-    res.header('auth-token', token).json(loginuser);
+    try {
+        const loginuser = yield user_1.default.findOne({ "email": req.body.email });
+        if (!loginuser)
+            return res.status(400).json('your credentials are not valid');
+        const correctPassword = yield loginuser.validatePassword(req.body.password);
+        if (!correctPassword)
+            return res.status(400).json('Invalid Password');
+        const token = jsonwebtoken_1.default.sign({ _id: loginuser._id }, process.env['SECRET_TOKEN'] || 'tokenindefinido');
+        res.header('auth-token', token).json(loginuser);
+    }
+    catch (error) {
+        res.status(404).json('error');
+    }
 });
 exports.login = login;
 //register user

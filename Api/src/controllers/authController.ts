@@ -13,7 +13,7 @@ const validateinput = Joi.object({
 //login user
 export const login = async (req: Request, res: Response) => {
 
-
+try {
   const loginuser = await user.findOne({ "email": req.body.email })
   if (!loginuser) return res.status(400).json('your credentials are not valid')
 
@@ -24,6 +24,10 @@ export const login = async (req: Request, res: Response) => {
   
   
   res.header('auth-token', token).json(loginuser);
+  
+} catch (error) {
+  res.status(404).json('error')
+}
 
 
 };
