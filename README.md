@@ -3,7 +3,7 @@
 <em> API LOGIN - REGISTRO Y VALIDACION - TYPESCRIPT - JWT </em>
 
 
-*[Características de la aplicación y demostración](#Características-de-la-aplicación-y-demostración)
+*[Características de la aplicación y demostración]
 Se realizó Back-End que permite registracion de usuarios, con mail y contraseña. 
  Se busca usuairos a traves de su mail. Tiene las rutas protegidas. 
  
